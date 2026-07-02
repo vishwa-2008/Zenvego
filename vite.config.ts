@@ -5,9 +5,10 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+  const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'zenvego';
 
   return {
-    base: isGithubActions ? '/zenvego/' : '/',
+    base: isGithubActions ? `/${repoName}/` : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
